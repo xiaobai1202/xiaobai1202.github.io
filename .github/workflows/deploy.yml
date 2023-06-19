@@ -16,7 +16,7 @@ jobs:
       env:
         ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         TARGET_REPO: xiaobai1202/xiaobai1202.github.io
-        TARGET_BRANCH: master
+        TARGET_BRANCH: notes
         BUILD_SCRIPT: yarn && yarn docs:build
         BUILD_DIR: docs/.vuepress/dist
         CNAME: https://xiaobai1202.github.io
