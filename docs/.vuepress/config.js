@@ -10,5 +10,9 @@ module.exports = {
     },
     markdown: {
         lineNumbers: true
-    }
+    },
+    theme: 'vdoing',
+    themeConfig: {
+        sidebar: 'structuring' //  'structuring' | { mode: 'structuring', collapsable: Boolean} | 'auto' | 自定义
+     }
 }
