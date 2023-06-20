@@ -5,18 +5,21 @@ on:
     branches:
       - master
 jobs:
-  build-and-deploy:
-    runs-on: ubuntu-latest
-    steps:
-    - name: Checkout
-      uses: actions/checkout@master
+  build:
+    runs-on: ubuntu-latest #运行在虚拟机环境ubuntu-latest
 
-    - name: vuepress-deploy
-      uses: jenkey2011/vuepress-deploy@master
-      env:
-        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-        TARGET_REPO: xiaobai1202/xiaobai1202.github.io
-        TARGET_BRANCH: notes
-        BUILD_SCRIPT: yarn && yarn docs:resource && yarn docs:build
-        BUILD_DIR: docs/.vuepress/dist
-        CNAME: https://xiaobai1202.github.io
+    strategy:
+      matrix:
+        node-version: [16.x]
+
+    steps:
+      - name: Checkout 
+        uses: actions/checkout@v1 
+      - name: Use Node.js ${{ matrix.node-version }} 
+        uses: actions/setup-node@v1 
+        with:
+          node-version: ${{ matrix.node-version }} # 版本
+      - name: run deploy.sh 
+        env: # 设置环境变量
+          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }} # toKen私密变量
+        run: yarn install && yarn run docs:resource && yarn run docs:build
