@@ -7,6 +7,7 @@
   "license": "MIT",
   "private": false,
   "scripts": {
+    "docs:resource": "cp -rfv resources/* docs/.vuepress/public/ && find docs/0* -type f -exec sed -i 's#(/resources/#(/#g' {} +",
     "docs:dev": "vuepress dev docs",
     "docs:build": "vuepress build docs"
   },

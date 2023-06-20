@@ -4,7 +4,7 @@ module.exports = {
     configureWebpack: {
         resolve: {
             alias: {
-                '@source': '.vuepress/public'
+                '@alias': '/resources/img'
             }
         }
     },
